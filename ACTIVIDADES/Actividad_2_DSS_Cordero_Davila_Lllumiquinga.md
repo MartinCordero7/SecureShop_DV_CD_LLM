@@ -1,4 +1,3 @@
-
 # UNIVERSIDAD DE LAS FUERZAS ARMADAS ESPE 
 ## DESARROLLO DE SOFTWARE SEGURO 
 
@@ -93,6 +92,30 @@
 | **7. Product Service** | 1. Inyección de código (XSS) en descripción. | Sanitización y codificación de salidas. | Implementación |
 | | 2. Alteración de datos en capas. | Uso de DTO (Data Transfer Object) estructurados. | Implementación |
 | | 3. Errores de lógica en stock. | Pruebas de código estáticas (SAST) y dinámicas (DAST). | Implementación (Verificar) |
+| **8. Order Service** | 1. Ataque de repetición al crear orden. | Uso de tokens de un solo uso (Nonces). | Diseño / Implementación |
+| | 2. Fallo por comunicación no segura. | Cifrado a nivel de mensaje. | Diseño |
+| | 3. Interrupción de servicio en ventas altas. | Métricas y alertas tempranas (APM). | Operación (Monitorizar) |
+| **9. Bases de datos** | 1. Acceso directo desde internet. | Segmentación de red y Firewalls internos. | Despliegue |
+| | 2. Robo de archivos físicos del disco. | Cifrado de datos en reposo (TDE). | Despliegue / Operación |
+| | 3. Pérdida de integridad por fallos. | Transacciones ACID y bloqueos optimistas. | Diseño |
+| **10. Repositorio GitHub** | 1. Inserción de código malicioso. | Revisiones de código y reglas de Pull Requests. | Implementación |
+| | 2. Acceso a cuenta de desarrollador. | MFA obligatorio para todos los colaboradores. | Configuración Entorno |
+| | 3. Exposición pública accidental. | Controles de privacidad y auditoría de accesos. | Operación |
+| **11. Logs de auditoría** | 1. Inyección de logs falsos (Log Forging). | Sanitización antes de escribir el registro. | Implementación |
+| | 2. Borrado de evidencias por intruso. | Almacenamiento centralizado "Append-only". | Diseño / Despliegue |
+| | 3. Fallo de disco por exceso de logs. | Políticas de rotación y monitoreo de espacio. | Operación |
+| **12. Red / Comunicaciones** | 1. Sniffing entre microservicios. | Autenticación mutua y cifrado (mTLS). | Despliegue |
+| | 2. Ataque Man-in-the-Middle interno. | Microsegmentación de red. | Despliegue |
+| | 3. Inyección de paquetes falsificados. | Controles estrictos de enrutamiento. | Diseño de Arquitectura |
+| **13. Secretos y config.** | 1. Credenciales quemadas en el código. | Uso de bóvedas seguras (Vault) y escaneo de secretos. | Implementación / Verificar |
+| | 2. Fuga de secretos en los logs. | Enmascaramiento de variables de entorno en consola. | Implementación |
+| | 3. Descifrado de tokens antiguos. | Rotación periódica y automática de llaves. | Operación |
+| **14. Clúster Kubernetes** | 1. Toma de control del clúster. | Blindar clúster (Hardening) y RBAC estricto. | Despliegue |
+| | 2. Escape del contenedor (Breakout). | Ejecutar contenedores sin privilegios de root. | Diseño / Despliegue |
+| | 3. Imágenes base infectadas. | Escaneo de imágenes en el pipeline CI/CD. | Implementación (Verificar) |
+| **15. Pasarela de pagos** | 1. Interceptación de tarjeta de crédito. | Tokenización directa al proveedor (PCI-DSS). | Diseño |
+| | 2. Falsificación de pago "aprobado". | Verificación de Webhooks con firmas criptográficas. | Implementación |
+| | 3. Interrupción del servicio de pagos. | Patrón Circuit Breaker para manejo de fallos. | Diseño |
 
 ### Referencias:
 
