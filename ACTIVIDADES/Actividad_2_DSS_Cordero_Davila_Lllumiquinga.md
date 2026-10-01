@@ -8,6 +8,9 @@
 * Martín Cordero 
 * Ariel Llumiquinga
 
+**REPO:** 
+https://github.com/MartinCordero7/SecureShop_DV_CD_LLM/tree/main/ACTIVIDADES
+
 ### 1.- Identificar al menos quince activos de SecureShop.
 
 1. Datos de usuarios
