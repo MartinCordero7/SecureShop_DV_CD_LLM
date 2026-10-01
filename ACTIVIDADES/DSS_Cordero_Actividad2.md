@@ -1,9 +1,10 @@
+
 # UNIVERSIDAD DE LAS FUERZAS ARMADAS ESPE 
 ## DESARROLLO DE SOFTWARE SEGURO 
 
-*NRC:* 36902
+**NRC:** 36902
 
-*INTEGRANTES:* 
+**INTEGRANTES:** 
 * Tnte. Dávila Anabel
 * Martín Cordero 
 * Ariel Llumiquinga
@@ -47,20 +48,51 @@
 | Pasarela de pagos | Servicio |
 
 ### 3.- Responder:
-*¿Qué consecuencias tendría para SecureShop que este activo fuera accedido, modificado o quedará indisponible?*
+**¿Qué consecuencias tendría para SecureShop que este activo fuera accedido, modificado o quedara indisponible?**
 
-| Activo | Tipo | ¿Qué consecuencias tendría para SecureShop que este activo fuera accedido, modificado o quedara indisponible? |
+| Activo | Tipo | Consecuencias (Acceso, Modificación, Indisponibilidad) |
 | :--- | :--- | :--- |
-| Datos de usuarios | Información / Datos | El acceso no autorizado podría exponer información personal de los clientes. Una modificación podría generar datos incorrectos o afectar las cuentas de los usuarios. Su indisponibilidad impediría consultar o gestionar correctamente la información de los clientes. |
-| Credenciales de acceso | Información / Datos | Su acceso no autorizado podría permitir el ingreso a cuentas de usuarios o administradores. Una modificación podría impedir el acceso legítimo a las cuentas. Su indisponibilidad podría impedir la autenticación y el acceso a la plataforma. |
-| Catálogo de productos | Información / Datos | El acceso no autorizado permitiría consultar información interna del catálogo. Una modificación podría mostrar productos, precios o existencias incorrectas. Su indisponibilidad impediría consultar o administrar los productos disponibles. |
-| Datos de los pedidos (órdenes de compra) | Información / Datos | El acceso no autorizado podría exponer información de las compras realizadas. Una modificación podría alterar productos, cantidades, estados o información de los pedidos. Su indisponibilidad impediría consultar y procesar correctamente las órdenes de compra. |
-| API Gateway | Servicio / Infraestructura | Un acceso o modificación no autorizada podría permitir manipular el acceso a los microservicios. Si quedara indisponible, los clientes no podrían acceder normalmente a los servicios de SecureShop, afectando las operaciones de usuarios, productos y pedidos. |
-| User Service (Microservicio de usuarios) | Software / Servicio | Una modificación podría alterar la lógica de gestión de usuarios y afectar su información o autenticación. Su indisponibilidad impediría registrar, consultar o administrar usuarios, afectando las funciones que dependen de este servicio. |
-| Product Service (Microservicio de productos) | Software / Servicio | Una modificación podría provocar errores en la gestión del catálogo, precios o existencias. Su indisponibilidad impediría consultar o administrar los productos, afectando la operación de la plataforma. |
-| Order Service (Microservicio de pedidos) | Software / Servicio | Una modificación podría alterar la lógica de creación o gestión de pedidos. Su indisponibilidad impediría registrar, consultar o actualizar órdenes de compra, afectando directamente el proceso de venta. |
-| Bases de datos de cada dominio | Infraestructura / Datos | Un acceso no autorizado podría exponer información almacenada en los diferentes dominios. Una modificación podría provocar pérdida o corrupción de datos. Su indisponibilidad impediría que los microservicios consulten o almacenen información necesaria para funcionar. |
-| Repositorio de código fuente (GitHub) | Información / Software | Un acceso no autorizado podría exponer el código y configuraciones del sistema. Una modificación podría introducir errores o código malicioso en la aplicación. Su indisponibilidad dificultaría el desarrollo, mantenimiento y despliegue de nuevas versiones de SecureShop. |
+| **Datos de usuarios** | Información / Datos | El acceso expone información personal. Su modificación corrompe perfiles. Su indisponibilidad impide consultar a los clientes. |
+| **Credenciales de acceso** | Información / Datos | El acceso permite suplantación de identidad. Su modificación bloquea a usuarios legítimos. Su indisponibilidad impide el inicio de sesión. |
+| **Catálogo de productos** | Información / Datos | El acceso expone métricas de negocio. Su modificación altera precios. Su indisponibilidad impide ver qué comprar. |
+| **Datos de los pedidos** | Información / Datos | El acceso expone historiales de compra. Su modificación permite fraude en envíos. Su indisponibilidad detiene el procesamiento de ventas. |
+| **API Gateway** | Servicio / Infraestructura | El acceso/modificación permite manipular el enrutamiento. Su indisponibilidad desconecta a los clientes de todos los microservicios. |
+| **User Service** | Software / Servicio | Modificarlo altera la lógica de gestión de cuentas. Su indisponibilidad impide registrar, consultar o administrar usuarios. |
+| **Product Service** | Software / Servicio | Modificarlo corrompe la validación de stock. Su indisponibilidad impide gestionar el catálogo tecnológico de la empresa. |
+| **Order Service** | Software / Servicio | Modificarlo altera la creación de compras. Su indisponibilidad paraliza las ventas, siendo el mayor impacto al negocio. |
+| **Bases de datos** | Infraestructura / Datos | El acceso extrae datos masivos. La modificación corrompe la información central. Su indisponibilidad tumba la persistencia del sistema. |
+| **Repositorio GitHub** | Información / Software | El acceso filtra la propiedad intelectual y vulnerabilidades. La modificación inyecta código malicioso. Su indisponibilidad detiene el desarrollo. |
+| **Logs de auditoría** | Información / Datos | El acceso expone comportamientos del sistema. La modificación oculta rastros de atacantes. Su indisponibilidad impide investigar incidentes. |
+| **Red y comunicaciones** | Infraestructura | El acceso permite espiar datos en tránsito (sniffing). La modificación permite ataques Man-in-the-Middle. La indisponibilidad aísla los microservicios. |
+| **Secretos y config.** | Información / Datos | El acceso otorga llaves maestras al atacante (bases de datos, JWT). La modificación desconfigura el sistema. Su indisponibilidad impide que los servicios arranquen. |
+| **Clúster Kubernetes** | Infraestructura | El acceso da control total del entorno. La modificación permite desplegar malware (mineros cripto). La indisponibilidad tumba toda la plataforma. |
+| **Pasarela de pagos** | Servicio | El acceso no autorizado a los tokens de pago genera fraude. La modificación altera la confirmación de pagos. La indisponibilidad impide cobrar el dinero. |
+
+### 4.- Análisis de Amenazas, Controles y Etapas de Implementación
+
+| Activo | Amenaza (x3) | Mecanismo de Control | Etapa de Implementación |
+| :--- | :--- | :--- | :--- |
+| **1. Datos de usuarios** | 1. Robo masivo por inyección SQL. | Uso de consultas parametrizadas (ORM). | Implementación / Verificar |
+| | 2. Interceptación de datos en tránsito. | Cifrado de canal con TLS/HTTPS. | Diseño / Despliegue |
+| | 3. Fuga de datos por personal interno. | Enmascaramiento de datos sensibles. | Diseño |
+| **2. Credenciales** | 1. Ataques de fuerza bruta. | Límite de espera (Rate limiting / Lockout). | Requisitos (NF) / Diseño |
+| | 2. Robo de contraseñas por phishing. | Autenticación de doble factor (2FA). | Requisitos (F) |
+| | 3. Brecha de la base de datos de claves. | Almacenamiento con Hashing fuerte (Bcrypt) + Salt. | Implementación |
+| **3. Catálogo de productos** | 1. Modificación maliciosa de precios. | Control de acceso basado en roles (RBAC). | Requisitos (F) / Diseño |
+| | 2. Extracción de datos masiva (Scraping). | Implementación de WAF y CAPTCHA. | Despliegue / Operación |
+| | 3. Subida de imágenes con malware. | Validación de entradas y sanitización. | Implementación |
+| **4. Datos de pedidos** | 1. Manipulación del estado de pago (IDOR). | Validación de autorización en el backend. | Diseño / Implementación |
+| | 2. Pérdida de registros de facturación. | Backups automatizados y redundancia. | Operación (Monitorizar) |
+| | 3. Repudio de compra por el usuario. | Firmas digitales y trazabilidad de sesión. | Diseño |
+| **5. API Gateway** | 1. Denegación de servicio (DDoS). | Throttling y balanceo de carga. | Diseño / Despliegue |
+| | 2. Evasión de la autenticación. | Validación estricta de tokens JWT en el Gateway. | Implementación |
+| | 3. Exposición de puertos inseguros. | Hardening: eliminar puertos innecesarios. | Despliegue |
+| **6. User Service** | 1. Escalada de privilegios. | Principio de mínimo privilegio. | Diseño / Implementación |
+| | 2. Dependencias con vulnerabilidades. | Gestión de dependencias (SCA automatizado). | Despliegue |
+| | 3. Caída por alta concurrencia. | Pruebas de carga y autoescalado. | Operación |
+| **7. Product Service** | 1. Inyección de código (XSS) en descripción. | Sanitización y codificación de salidas. | Implementación |
+| | 2. Alteración de datos en capas. | Uso de DTO (Data Transfer Object) estructurados. | Implementación |
+| | 3. Errores de lógica en stock. | Pruebas de código estáticas (SAST) y dinámicas (DAST). | Implementación (Verificar) |
 
 ### Referencias:
 
